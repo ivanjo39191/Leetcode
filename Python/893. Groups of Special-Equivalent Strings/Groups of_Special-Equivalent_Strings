@@ -1,0 +1,13 @@
+#sorted 針對可迭代對象進行排序
+#set 創建一個無序不重複的元素集
+
+class Solution(object):
+    def numSpecialEquivGroups(self, A):
+        """
+        :type A: List[str]
+        :rtype: int
+        """   
+        x=[]
+        for i in A:
+            x.append("".join(sorted(i[0::2]))+"".join(sorted(i[1::2])))
+        return len(set(x))
