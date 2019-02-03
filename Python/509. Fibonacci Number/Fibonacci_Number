@@ -1,0 +1,11 @@
+#將新的值加入串列的尾端直到N
+class Solution:
+    def fib(self, N):
+        """
+        :type N: int
+        :rtype: int
+        """
+        F = [0,1]
+        for i in range(2,N+1):
+            F.append(F[i-1]+F[i-2])
+        return F[N]
