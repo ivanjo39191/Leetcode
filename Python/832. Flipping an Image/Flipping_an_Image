@@ -1,0 +1,24 @@
+#先水平反轉再0,1反轉
+#方法一:不使用生成器
+class Solution:
+    def flipAndInvertImage(self, A):
+        """
+        :type A: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        ans=[]
+        for B in A:
+            u=[]
+            for C in B[::-1]:
+                u.append(C^1)
+            ans.append(u)
+        return ans
+        
+#方法二:使用生成器
+class Solution:
+    def flipAndInvertImage(self, A):
+        """
+        :type A: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        return [[ C^1 for C in B[::-1]] for B in A]
