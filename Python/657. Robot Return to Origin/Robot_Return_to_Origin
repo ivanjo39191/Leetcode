@@ -1,0 +1,13 @@
+#使用count計算數量
+
+class Solution:
+    def judgeCircle(self, moves: 'str') -> 'bool':
+        counts = [0,0,0,0]
+        counts[0] = moves.count('U')
+        counts[1] = moves.count('D')
+        counts[2] = moves.count('R')
+        counts[3] = moves.count('L')
+        if counts[0]==counts[1] and counts[2]==counts[3]:
+            return True
+        else:
+            return False
