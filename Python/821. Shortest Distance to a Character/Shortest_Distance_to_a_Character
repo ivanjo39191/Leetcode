@@ -1,0 +1,20 @@
+#使用enumerate (列舉、枚舉：同時列出數據和數據下標)
+#將數據下標存入 c 串列
+#迴圈S長度，將每個長度與 c 串列的相減取絕對值並比較，取較小者
+class Solution(object):
+    def shortestToChar(self, S, C):
+        """
+        :type S: str
+        :type C: str
+        :rtype: List[int]
+        """
+        c = []
+        for i,j in enumerate(S):
+            if j == C:
+                c.append(i)
+        r = []
+        for i in range(len(S)):
+            r.append(min([abs(i-t) for t in c]))
+        return r
+                
+        
