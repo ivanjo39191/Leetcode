@@ -1,0 +1,34 @@
+題目摘要：
+若該數可以被該數字每個位數整除則稱為Self Dividing Numbers
+ex. 12 能被 1、2整除
+ex. 128 能被 1、2、8整除
+
+解法：(faster than 90.43%)
+#創建一個判別是否為自整除數的函式
+#將該數字轉為字串進行迴圈、將每個位數轉換成數值進行整除判斷
+#若有一個位數為0或是任一位數不整除都回傳false
+
+
+
+
+class Solution:
+    def selfDividingNumbers(self, left: 'int', right: 'int') -> 'List[int]':
+        ans = []
+        def isself(num):
+            for x in str(num):
+                if x == '0' :
+                    return False
+                if num%int(x)!=0:
+                    return False
+                else:
+                    z = True
+            return z
+            
+        for i in range(left,right+1):
+            if isself(i) == True:
+                ans.append(i)
+        return ans
+        
+        
+        
+ 
