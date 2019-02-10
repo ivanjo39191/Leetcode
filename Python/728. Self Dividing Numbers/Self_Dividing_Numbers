@@ -20,9 +20,7 @@ class Solution:
                     return False
                 if num%int(x)!=0:
                     return False
-                else:
-                    z = True
-            return z
+            return True
             
         for i in range(left,right+1):
             if isself(i) == True:
