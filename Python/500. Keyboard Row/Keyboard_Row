@@ -1,0 +1,16 @@
+題目摘要：輸出在鍵盤同一行的元素
+解法：
+#將三行鍵盤放入set
+#使用issubset判断集合的所有元素是否都包含在指定集合
+
+
+class Solution:
+    def findWords(self, words: 'List[str]') -> 'List[str]':
+        a = set('qwertyuiop')
+        b = set('asdfghjkl')
+        c = set('zxcvbnm')
+        x= []
+        for word in words:
+            if set(word.lower()).issubset(a) or set(word.lower()).issubset(b) or set(word.lower()).issubset(c):
+                x.append(word)
+        return x
