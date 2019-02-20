@@ -1,4 +1,5 @@
-#將新的值加入串列的尾端直到N
+# 方法一
+# 將新的值加入串列的尾端直到N
 class Solution:
     def fib(self, N):
         """
@@ -9,3 +10,20 @@ class Solution:
         for i in range(2,N+1):
             F.append(F[i-1]+F[i-2])
         return F[N]
+# 方法二（較快）
+
+class Solution:
+    def fib(self, N: 'int') -> 'int':
+        if N is 0:
+            return 0
+        elif N is 1:
+            return 1
+        elif N > 1:
+            val = [1,0]
+            i = 0 
+            while i < (N -1):
+                val.insert(0,sum(val))
+                val.pop()
+                i+=1
+            return val[0]
+            
