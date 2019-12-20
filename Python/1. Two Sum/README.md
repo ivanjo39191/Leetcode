@@ -36,25 +36,30 @@ list.count()
 list.index()  
 count() 方法用於統計某個元素在列表中出現的次數。  
 count()方法語法：  
+        
         list.count(obj)
+        
 index() 函數用於從列表中找出某個值第一個匹配項的索引位置。  
 index()方法語法：  
+        
         list . index ( x [, start [, end ]])  
+        
 <a name="think1"></a>
 ### 思路  
-####解題關鍵:  
+解題關鍵:  
 主要是想找到num2 = target - num1，是否也在list中，那麼就需要運用以下兩個方法：  
 num2 in nums，返回True  
 nums.index(num2)，查找num2的索引  
-####解題詳解:  
+  
+解題詳解:  
 首先計算 nums 的長度並存入變數  
-宣告變數 j 為 -1，若沒找到 num2 可用是否大於0進行判斷  
-使用for迴圈進行遍歷  
-使用if判斷 num2 in nums  ，對 list 使用 in 的時間複雜度為 O(n)  
-如果num2=num1,且nums中只出現了一次，說明找到是 num1 本身  
-將此情況使用if判斷，再使用continue跳過  
+宣告變數 j 為 -1，在最後若沒找到 num2 可用是否大於0進行判斷  
+使用 for 迴圈進行遍歷  
+使用 if 判斷 num2 in nums  ，對 list 使用 in 的時間複雜度為 O(n)  
+如果 num2 = num1 ，且 nums 中只出現了一次，說明找到是 num1 本身  
+將此情況使用 if 判斷，再使用 continue 跳過  
 如果不是找到 num1 本身，則將該值存入 j  
-index(x,i+1)是從 num1 的序列後找 num2，避免重複查找  
+index(x,i+1) 是從 num1 的序列後找 num2，避免重複查找  
 判斷 j 是否大於0，大於0代表有找到 num2，將 i，j 值返回  
 若無找到 num2 則返回空值  
 
@@ -62,9 +67,11 @@ index(x,i+1)是從 num1 的序列後找 num2，避免重複查找
 
 <a name="bigo"></a>
 ### Big-O  
- 時間複雜度 O(n^2)  
+ 時間複雜度 O(N^2)  
  空間複雜度 O(N)  
-
+  
+Runtime: 800 ms, faster than 30.56% of Python3 online submissions for Two Sum.  
+Memory Usage: 13.7 MB, less than 88.37% of Python3 online submissions for Two Sum.  
 
 <a name="code"></a>
 ### 代碼  
@@ -84,3 +91,4 @@ index(x,i+1)是從 num1 的序列後找 num2，避免重複查找
                     return [i,j]
                 else:
                     return []
+
