@@ -17,7 +17,7 @@ Given the array `nums` **after** the possible rotation and an integer `targe
 
 You must write an algorithm with `O(log n)` runtime complexity.
 
-實現獲取 下一個排列 的函數，算法需要將給定數字序列重新排列成字典序中下一個更大的排列（即，組合出下一個更大的整數）。 如果不存在下一個更大的排列，則將數字重新排列成最小的排列（即升序排列）。 必須 原地 修改，只允許使用額外常數空間。
+整數數組 nums 按升序排列，數組中的值 互不相同 。在傳遞給函數之前，nums 在預先未知的某個下標 k（0 <= k < nums.length）上進行了 旋轉，使數組變為 [nums[k], nums[k 1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]]（下標 從 0 開始 計數）。例如， [0,1,2,4,5,6,7] 在下標 3 處經旋轉後可能變為 [4,5,6,7,0,1,2] 。給你 旋轉後 的數組 nums 和一個整數 target ，如果 nums 中存在這個目標值 target ，則返回它的下標，否則返回 -1 。
 
 **Example 1:**
 
