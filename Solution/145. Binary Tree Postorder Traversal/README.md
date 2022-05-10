@@ -1,30 +1,25 @@
-# 94. Binary Tree Inorder Traversal
+# 145. Binary Tree Postorder Traversal
 
-Column: November 15, 2021  
-Tag: Binary Tree  
-Tags: Easy  
-blog: published  
-github: published  
-status: Complete  
+Column: May 9, 2022
+Tag: Binary Tree, Stack
+Tags: Easy
+blog: published
+github: published
+status: Complete
 
-# 94. Binary Tree Inorder Traversal
+# **145. Binary Tree Postorder Traversal**
 
 ## Question
 
-Given the `root` of a binary tree, return *the inorder traversal of its nodes' values*.
+Given the `root` of a binary tree, return *the postorder traversal of its nodes' values*.
 
-給定一個二元樹的根節點 root ，返回它的 中序 遍歷。
+給你二元樹的根節點 root ，返回它節點值的 後序 遍歷。
 
 **Example 1:**
 
 ```
-    1
-     \
-      2
-     / 
-    3  
 Input: root = [1,null,2,3]
-Output: [1,3,2]
+Output: [3,2,1]
 ```
 
 **Example 2:**
@@ -41,26 +36,6 @@ Input: root = [1]
 Output: [1]
 ```
 
-**Example 4:**
-
-```
-    1
-   / 
-  2   
-Input: root = [1,2]
-Output: [2,1]
-```
-
-**Example 5:**
-
-```
-    1
-     \
-      2
-Input: root = [1,null,2]
-Output: [1,2]
-```
-
 **Constraints:**
 
 - The number of nodes in the tree is in the range `[0, 100]`.
@@ -68,34 +43,23 @@ Output: [1,2]
 
 ## 相關說明
 
-本題可用代碼隨想錄動態規畫的二元樹遞歸遍歷三部曲思路解題。
-
-1. 確定遞歸函數的參數返回值
-2. 確定終止條件
-3. 確定單層遞歸的邏輯
-
 ## 思路1
 
 ### 解題詳解:
 
-1. 確定遞歸函數的參數返回值
-    
-    傳入頭節點 root ，Array result
-    
-2. 確定終止條件
-    
-    遇到空節點時 return
-    
-3. 確定單層遞歸的邏輯
-    
-    中序遍歷(左中右):
-    
-    左 : 傳入左節點 root.left、Array result
-    
-    中 : 存入 Array
-    
-    右 : 傳入右節點 root.right、Array result
-    
+使用遞歸三部曲，
+
+定義 result 儲存結果。
+
+定義 traversal 函數的參數為 root ，無返回值。
+
+當 root 為 None 時終止。
+
+前序遍歷的單層邏輯為 左 > 右 > 中。
+
+最後調用 traversal 傳入 root。
+
+返回 result。
 
 ### Big-O
 
@@ -107,7 +71,7 @@ Output: [1,2]
 
 語言: python3
 
-執行用時: 36ms 
+執行用時: 28ms 
 
 內存消耗: 15 MB
 
@@ -119,14 +83,14 @@ Output: [1,2]
 #         self.left = left
 #         self.right = right
 class Solution:
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        result = []
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        result= []
         def traversal(root):
             if root is None:
-                return 
+                return
             traversal(root.left)
-            result.append(root.val)
             traversal(root.right)
+            result.append(root.val)
         traversal(root)
         return result
 ```
@@ -145,7 +109,7 @@ class Solution:
 
 取出 st (堆疊)中的節點 node，
 
-若 node 有值，依據右中左入堆疊(與遞歸相反)，中入堆疊後加入 None 標記。
+若 node 有值，依據中右左入堆疊(與遞歸相反)，中入堆疊後加入 None 標記。
 
 若 node 為 None，代表為標記，將下一個值加入到 result。
 
@@ -161,9 +125,9 @@ st (堆疊) 中的值全部彈出後，返回 result。
 
 語言: python3
 
-執行用時: 36ms 
+執行用時: 28ms 
 
-內存消耗: 15 MB
+內存消耗: 14.8 MB
 
 ```python
 # Definition for a binary tree node.
@@ -173,18 +137,18 @@ st (堆疊) 中的值全部彈出後，返回 result。
 #         self.left = left
 #         self.right = right
 class Solution:
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         result = []
-        st = []
-        if root:
+        st= []
+        if root != None:
             st.append(root)
         while st:
             node = st.pop()
             if node != None:
-                if node.right:
-                    st.append(node.right)
                 st.append(node)
                 st.append(None)
+                if node.right:
+                    st.append(node.right)
                 if node.left:
                     st.append(node.left)
             else:
