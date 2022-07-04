@@ -1,8 +1,9 @@
 # 226. Invert Binary Tree
 
-Column: November 29, 2021
-Tags: Easy
-status: Complete
+Column: November 29, 2021  
+Tags: Easy  
+github: published  
+status: Complete  
 
 # 226. Invert Binary Tree
 
@@ -51,19 +52,19 @@ The number of nodes in the tree is in the range [0, 100].
 
 ### 解題詳解:
 
-確定遞歸返回值，使用 res 紀錄根節點，
+確定遞歸返回值，
 
 設立終止條件， root == None 時結束遞歸。
 
 單層遞歸邏輯，使用前序遍歷 （中左右），每次遞歸交換左右節點。
 
-最後返回 res 即為反轉後的二元樹。
+最後返回 root 即為反轉後的二元樹。
 
 ### Big-O
 
-時間複雜度 O(nlogn)
+時間複雜度 O(n)
 
-空間複雜度 O(1)
+空間複雜度 O(n)
 
 ### 代碼
 
@@ -81,15 +82,62 @@ The number of nodes in the tree is in the range [0, 100].
 #         self.left = left
 #         self.right = right
 class Solution:
-    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        res = root
-        def invert(root):
-            if root == None:
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        def invert(node):
+            if node == None:
                 return
-            root.left, root.right = root.right, root.left
-            invert(root.left)
-            invert(root.right)
+            node.left, node.right = node.right, node.left  
+            invert(node.left)
+            invert(node.right)
         invert(root)
+        return root
+```
 
-        return res
+## 思路2
+
+### 解題詳解:
+
+深度優先遍歷（迭代法）
+
+1. 初始化堆疊列表
+2. 入堆疊
+3. 迭代堆疊
+4. 單次迭代邏輯與標記取值（交換左右節點）
+5. 返回 root 節點
+
+### Big-O
+
+時間複雜度 O(n)
+
+空間複雜度 O(n)
+
+### 代碼
+
+語言: python3
+
+執行用時: 28ms 
+
+內存消耗: 15 MB
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        if not root:
+            return root
+        st = []
+        st.append(root)
+        while st:
+            node = st.pop()
+            if node.right:
+                st.append(node.right)
+            if node.left:
+                st.append(node.left)
+            node.left, node.right = node.right, node.left
+        return root
 ```
